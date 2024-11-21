@@ -13,7 +13,7 @@
     "chalk": "^5.2.0",
     "dotenv": "^16.0.3",
     "hardhat": "2.22.16",
-    "hardhat-deploy": "^0.11.25",
+    "hardhat-deploy": "^0.14.0",
     "hardhat-gas-reporter": "^2.2.1",
     "nft.storage": "^7.0.0",
     "node-watch": "^0.7.3"
