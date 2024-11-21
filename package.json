@@ -1,0 +1,49 @@
+{
+  "name": "@pinsav3/monorepo",
+  "version": "1.0.0",
+  "keywords": [
+    "ethereum",
+    "react",
+    "workspaces",
+    "yarn"
+  ],
+  "private": true,
+  "scripts": {
+    "frontend:build": "yarn workspace @pinsav3/frontend build",
+    "frontend:eject": "yarn workspace @pinsav3/frontend eject",
+    "frontend:dev": "yarn workspace @pinsav3/frontend dev",
+    "frontend:test": "yarn workspace @pinsav3/frontend test",
+    "frontend:prettier": "yarn workspace @pinsav3/frontend prettier:write",
+    "prettier": "yarn workspace @pinsav3/frontend prettier:write",
+    "dev": "yarn workspace @pinsav3/frontend dev",
+    "build": "yarn workspace @pinsav3/frontend build",
+    "install": "yarn workspace @pinsav3/frontend install",
+    "chain": "yarn workspace @pinsav3/hardhat chain",
+    "fork": "yarn workspace @pinsav3/hardhat fork",
+    "node": "yarn workspace @pinsav3/hardhat chain",
+    "test": "yarn workspace @pinsav3/hardhat test",
+    "start": "yarn workspace @pinsav3/frontend dev",
+    "compile": "yarn workspace @pinsav3/hardhat compile",
+    "deploy": "yarn workspace @pinsav3/hardhat deploy",
+    "verify": "yarn workspace @pinsav3/hardhat verify",
+    "watch": "yarn workspace @pinsav3/hardhat watch",
+    "accounts": "yarn workspace @pinsav3/hardhat accounts",
+    "balance": "yarn workspace @pinsav3/hardhat balance",
+    "send": "yarn workspace @pinsav3/hardhat send",
+    "generate": "yarn workspace @pinsav3/hardhat generate",
+    "account": "yarn workspace @pinsav3/hardhat account",
+    "mineContractAddress": "cd packages/hardhat && npx hardhat mineContractAddress",
+    "wallet": "cd packages/hardhat && npx hardhat wallet",
+    "fundedwallet": "cd packages/hardhat && npx hardhat fundedwallet",
+    "flatten": "cd packages/hardhat && npx hardhat flatten",
+    "clean": "cd packages/hardhat && npx hardhat clean"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/hardhat",
+      "packages/frontend"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
