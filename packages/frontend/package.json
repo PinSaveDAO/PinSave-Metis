@@ -11,7 +11,7 @@
     "prettier:write": "prettier --write \"**/*.{ts,tsx}\""
   },
   "dependencies": {
-    "@livepeer/react": "^4.2.8",
+    "@livepeer/react": "^3.0.1",
     "@mantine/core": "^4.2.12",
     "@mantine/dropzone": "^4.2.12",
     "@mantine/form": "^7.2.2",
@@ -37,7 +37,7 @@
     "react-query": "^3.39.3",
     "sharp": "^0.33.0",
     "tabler-icons-react": "^1.56.0",
-    "viem": "^2.21.48",
+    "viem": "^1.16.6",
     "wagmi": "^1.4.3"
   },
   "devDependencies": {
