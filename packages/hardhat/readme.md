@@ -1,5 +1,13 @@
 # Hardhat
 
+## Compiling Contracts
+
+`npx hardhat compile`
+
+## Testing Contracts
+
+`npx hardhat test`
+
 ## Deploy PinSave Contracts
 
 ```bash
