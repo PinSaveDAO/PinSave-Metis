@@ -17,12 +17,10 @@ import ReactPlayer from "react-player";
 import { Upload, Replace } from "tabler-icons-react";
 import {
   useAccount,
-  useNetwork,
   useContractWrite,
   usePrepareContractWrite,
   useEnsAddress,
 } from "wagmi";
-import { zeroPadValue, hexlify, randomBytes } from "ethers";
 
 import { UploadData } from "@/services/upload";
 import { getContractInfo } from "@/utils/contracts";
@@ -87,8 +85,7 @@ export const dropzoneChildren = (image: File | undefined) => {
 const UploadForm = () => {
   const [hasMounted, setHasMounted] = useState(false);
   const { address: senderAddress } = useAccount();
-  const { chain } = useNetwork();
-  const { address: contractAddress, abi } = getContractInfo(chain?.id);
+  const { address: contractAddress, abi } = getContractInfo();
 
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -97,29 +94,24 @@ const UploadForm = () => {
     senderAddress
   );
 
-  const [randomBytes32, setRandomBytes32] = useState<string>(
-    "0x000000000000000000000000000000000000000000000000000000000000000a"
-  );
-
   const [isPostUpdated, setIsPostUpdated] = useState<boolean>(false);
   const [isPostLoading, setIsPostLoading] = useState<boolean>(false);
 
   const [cid, setCid] = useState<string>("");
 
-  const [provider, setProvider] = useState<
-    "NFT.Storage" | "NFTPort" | "Estuary"
-  >("NFT.Storage");
+  const [provider, setProvider] = useState<"Pinata">("Pinata");
 
   const { config } = usePrepareContractWrite({
     address: contractAddress,
     abi: abi,
     functionName: "createPost",
-    args: [postReceiver, cid, randomBytes32],
+    args: [postReceiver, cid],
   });
   const { data, write: writeMintPost } = useContractWrite(config);
   const [lastHash, setLastHash] = useState<string>("");
 
   const [ensName, setEnsName] = useState<string>("");
+
   const { data: receiverAddress } = useEnsAddress({
     name: ensName,
     chainId: 1,
@@ -142,7 +134,6 @@ const UploadForm = () => {
       }
 
       setCid(cid);
-      setRandomBytes32(zeroPadValue(hexlify(randomBytes(32)), 32));
 
       setImage(undefined);
       setName("");
@@ -287,15 +278,10 @@ const UploadForm = () => {
                     placeholder="Pick IPFS Provider"
                     value={provider}
                     onChange={(event) =>
-                      setProvider(
-                        event.currentTarget.value as
-                          | "NFT.Storage"
-                          | "NFTPort"
-                          | "Estuary"
-                      )
+                      setProvider(event.currentTarget.value as "Pinata")
                     }
                     size="sm"
-                    data={["NFT.Storage", "NFTPort", "Estuary"]}
+                    data={["Pinata"]}
                   />
                 </Center>
               </div>

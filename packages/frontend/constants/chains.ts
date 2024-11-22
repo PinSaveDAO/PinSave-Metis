@@ -1,6 +1,5 @@
 export const CHAINS = {
-  goerli: 5,
-  optimism: 10,
+  metis: 1088,
 };
 
 export type ChainName = keyof typeof CHAINS;

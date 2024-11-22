@@ -6,15 +6,15 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.nftstorage.link",
-      },
-      {
-        protocol: "https",
         hostname: "gateway.pinata.cloud",
       },
       {
         protocol: "https",
         hostname: "**.pinsave.app",
+      },
+      {
+        protocol: "https",
+        hostname: "gold-accurate-leopard-8.mypinata.cloud",
       },
       {
         protocol: "https",

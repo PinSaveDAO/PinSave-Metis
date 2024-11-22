@@ -2,7 +2,6 @@ import { ActionIcon, SimpleGrid, LoadingOverlay } from "@mantine/core";
 import { NextRouter, useRouter } from "next/router";
 import { ArrowLeft } from "tabler-icons-react";
 
-import type { ChainName } from "@/constants/chains";
 import MediaDetails from "@/components/Post/MediaDetails";
 import DisplayMedia from "@/components/Post/DisplayMedia";
 import { PageSEO } from "@/components/SEO";
@@ -10,10 +9,9 @@ import { usePost } from "@/hooks/api";
 
 const PostPage = () => {
   const router: NextRouter = useRouter();
-  const currentChain: ChainName = "optimism";
   const postId: string = String(router.query.id);
-  const orbisTag: string = `${currentChain}: ${postId}`;
-  const { data: postQueried, isLoading } = usePost(currentChain, postId);
+  const orbisTag: string = `metis: ${postId}`;
+  const { data: postQueried, isLoading } = usePost(postId);
   return (
     <div>
       <PageSEO

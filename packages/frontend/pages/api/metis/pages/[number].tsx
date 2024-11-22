@@ -1,7 +1,8 @@
 import { fetchDecodedPost } from "@/services/fetchCid";
 import { getContractInfo } from "@/utils/contracts";
-import { Contract, InfuraProvider } from "ethers";
+
 import type { NextApiRequest, NextApiResponse } from "next";
+import { Contract, JsonRpcProvider } from "ethers";
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,16 +12,15 @@ export default async function handler(
     const { number } = req.query;
     const pageNumber = Number(number);
 
-    const { address, abi } = getContractInfo(10);
+    const { address, abi } = getContractInfo();
 
-    const provider = new InfuraProvider(
-      "optimism",
-      process.env.NEXT_PUBLIC_INFURA_OPTIMISM
+    const provider = new JsonRpcProvider(
+      "https://andromeda.metis.io/?owner=1088"
     );
 
-    const contract = new Contract(address, abi, provider);
+    const contract: Contract = new Contract(address, abi, provider);
 
-    const totalSupply = Number(await contract.totalSupply());
+    const totalSupply: number = Number(await contract.totalSupply());
 
     let items = [];
     let result;
@@ -36,8 +36,9 @@ export default async function handler(
     try {
       for (let i = lowerLimit; upperLimit >= i; i++) {
         result = await contract.getPostCid(i);
+        console.log(result);
         const item = await fetchDecodedPost(result);
-
+        console.log(item);
         items.push({ token_id: i, ...item });
       }
     } catch {

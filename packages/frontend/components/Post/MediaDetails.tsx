@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import {
   useAccount,
   useContractWrite,
-  useNetwork,
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
@@ -37,9 +36,8 @@ interface IMyProps {
 
 const MediaDetails: React.FC<IMyProps> = ({ post, orbisTag }) => {
   const { orbis } = useOrbisContext();
-  const { chain } = useNetwork();
-  const { address } = useAccount();
-  const { address: contractAddress, abi } = getContractInfo(chain?.id);
+  const { address: senderAddress } = useAccount();
+  const { address: contractAddress, abi } = getContractInfo();
 
   const [postReceiver, setPostReceiver] = useState<`0x${string}` | undefined>();
 
@@ -56,8 +54,8 @@ const MediaDetails: React.FC<IMyProps> = ({ post, orbisTag }) => {
   const { config } = usePrepareContractWrite({
     address: contractAddress,
     abi,
-    functionName: "transfer",
-    args: [address, postReceiver, post.tokenIdBytes, true, ""],
+    functionName: "transferFrom",
+    args: [senderAddress, postReceiver, post.token_id],
   });
   const { data, write: writeMintPost } = useContractWrite(config);
 
@@ -118,7 +116,7 @@ const MediaDetails: React.FC<IMyProps> = ({ post, orbisTag }) => {
         </a>
       </Text>
 
-      {address === post.owner && (
+      {senderAddress === post.owner && (
         <form onSubmit={submit}>
           <Center mt="xs" mb="xs">
             <TextInput
@@ -287,7 +285,7 @@ const MediaDetails: React.FC<IMyProps> = ({ post, orbisTag }) => {
           placeholder="Enter your message"
           sx={{ maxWidth: "240px" }}
         />
-        {address ? (
+        {senderAddress ? (
           <Button
             ml="xs"
             radius="lg"

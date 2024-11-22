@@ -16,7 +16,7 @@ import { useMemo } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { Chain, optimism, mainnet } from "wagmi/chains";
+import { Chain, metis, mainnet } from "wagmi/chains";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { publicProvider } from "wagmi/providers/public";
 
@@ -35,7 +35,7 @@ export interface MyWalletOptions {
 }
 
 const { chains, publicClient } = configureChains(
-  [optimism, mainnet],
+  [metis, mainnet],
   [
     publicProvider(),
     jsonRpcProvider({

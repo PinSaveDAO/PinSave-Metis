@@ -1,13 +1,8 @@
-import LSP8PinSave from "@/contracts/LSP8PinSave.json";
+import PinSave from "@/contracts/PinSave.json";
 
-export function getContractInfo(chain?: number) {
-  if (chain === 10)
-    return {
-      address: "0x40F320CD3Cd616E59599568c4eA011E2eE49a175" as `0x${string}`,
-      abi: LSP8PinSave.abi,
-    };
+export function getContractInfo() {
   return {
-    address: "0x40F320CD3Cd616E59599568c4eA011E2eE49a175" as `0x${string}`,
-    abi: LSP8PinSave.abi,
+    address: "0x6F67850013b5775E36E35071a5CdD16ea43e1061" as `0x${string}`,
+    abi: PinSave.abi,
   };
 }

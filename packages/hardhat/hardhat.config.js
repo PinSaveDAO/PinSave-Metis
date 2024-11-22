@@ -63,10 +63,10 @@ module.exports = {
       accounts: [process.env.PRIVATE_KEY, process.env.PRIVATE_KEY_2],
       chainId: 56,
     },
-    canto: {
-      url: "https://canto.slingshot.finance/",
+    metis: {
+      url: "https://andromeda.metis.io",
       accounts: [process.env.PRIVATE_KEY, process.env.PRIVATE_KEY_2],
-      chainId: 7700,
+      chainId: 1088,
     },
     mantle: {
       url: "https://rpc.testnet.mantle.xyz/",

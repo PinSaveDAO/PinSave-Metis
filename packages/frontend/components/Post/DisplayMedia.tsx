@@ -19,14 +19,14 @@ const DisplayMedia: React.FC<IMyProps> = ({ post }) => {
   const width = xxlScreenWidth
     ? 1000
     : xlScreenWidth
-    ? 700
-    : largeScreenWidth
-    ? 600
-    : mediumScreenWidth
-    ? 500
-    : smallScreenWidth
-    ? 400
-    : 300;
+      ? 700
+      : largeScreenWidth
+        ? 600
+        : mediumScreenWidth
+          ? 500
+          : smallScreenWidth
+            ? 400
+            : 300;
   const xlScreenHeight = useMediaQuery("(min-height: 1000px)");
   const largeScreenHeight = useMediaQuery("(min-height: 800px)");
   const mediumScreenHeight = useMediaQuery("(min-height: 600px)");
@@ -35,12 +35,12 @@ const DisplayMedia: React.FC<IMyProps> = ({ post }) => {
   const height = xlScreenHeight
     ? 850
     : largeScreenHeight
-    ? 650
-    : mediumScreenHeight
-    ? 450
-    : smallScreenHeight
-    ? 325
-    : 250;
+      ? 650
+      : mediumScreenHeight
+        ? 450
+        : smallScreenHeight
+          ? 325
+          : 250;
 
   return (
     <Center>

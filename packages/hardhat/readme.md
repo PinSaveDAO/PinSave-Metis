@@ -11,15 +11,9 @@
 ## Deploy PinSave Contracts
 
 ```bash
-npx hardhat run scripts/deployPinSaveLS8.js --network bsc
+npx hardhat run scripts/deployPinSave.js --network metis
 ```
 
 ## Verifying
 
-`npx hardhat verify --network optimism "0x40F320CD3Cd616E59599568c4eA011E2eE49a175" "PinSave" "PIN" "0x48294a067D1bC5a58BCbAB4b3bE329d078D9E1Af"`
-
-## References
-
-[LSP8](https://docs.lukso.tech/standards/nft-2.0/LSP8-Identifiable-Digital-Asset/)
-
-[LSP8 in more details](https://github.com/lukso-network/LIPs/blob/main/LSPs/LSP-8-IdentifiableDigitalAsset.md)
+`npx hardhat verify --network ... "0x6F67850013b5775E36E35071a5CdD16ea43e1061" "PinSave" "PIN" "0x6F67850013b5775E36E35071a5CdD16ea43e1061"`

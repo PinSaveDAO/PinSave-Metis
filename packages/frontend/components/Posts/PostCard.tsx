@@ -12,7 +12,7 @@ interface IMyProps {
 
 const PostCard: React.FC<IMyProps> = ({ post }) => {
   return (
-    <Link href={`/optimism/posts/${post.token_id}`}>
+    <Link href={`/post/${post.token_id}`}>
       <Paper
         component="div"
         withBorder

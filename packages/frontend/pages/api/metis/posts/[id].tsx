@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Contract, InfuraProvider } from "ethers";
+import { Contract, JsonRpcProvider } from "ethers";
 
 import { ObjectJsonMetadata, fetchDecodedPost } from "@/services/fetchCid";
 import { getContractInfo } from "@/utils/contracts";
@@ -10,32 +10,25 @@ export default async function handler(
 ) {
   try {
     const { id } = req.query;
-    const { address, abi } = getContractInfo(10);
+    const { address, abi } = getContractInfo();
 
-    const provider: InfuraProvider = new InfuraProvider(
-      "optimism",
-      process.env.NEXT_PUBLIC_INFURA_OPTIMISM
+    const provider: JsonRpcProvider = new JsonRpcProvider(
+      "https://andromeda.metis.io/?owner=1088"
     );
 
     const contract: Contract = new Contract(address, abi, provider);
+    const postCid: string = await contract.getPostCid(id);
 
-    const postData: {
-      author: string;
-      cid: string;
-      id: string;
-      tokenId: string;
-    } = await contract.postByTokenId(id);
+    const objectJsonMetadata: ObjectJsonMetadata =
+      await fetchDecodedPost(postCid);
 
-    const objectJsonMetadata: ObjectJsonMetadata = await fetchDecodedPost(
-      postData.cid
-    );
     const owner: string = await contract.getPostOwner(id);
+    const postAuthor: string = await contract.getPostAuthor(id);
 
     res.status(200).json({
       ...objectJsonMetadata,
-      author: postData.author,
+      author: postAuthor,
       owner: owner,
-      tokenIdBytes: postData.tokenId,
     });
   } catch (err) {
     res.status(500).send({ error: "failed to fetch data" + err });

@@ -14,7 +14,7 @@ const Home: NextPage = () => {
     isLoading,
     fetchNextPage,
     hasNextPage,
-  } = usePosts("optimism");
+  } = usePosts();
 
   const observer = useRef<IntersectionObserver | null>(null);
 
