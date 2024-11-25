@@ -49,6 +49,6 @@
     "eslint-config-next": "^15.0.3",
     "eslint-plugin-react-hooks": "^5.0.0",
     "prettier": "^3.0.3",
-    "typescript": "^5.0.4"
+    "typescript": "^5.7.2"
   }
 }
