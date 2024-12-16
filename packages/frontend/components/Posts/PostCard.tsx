@@ -1,9 +1,7 @@
-import { Player } from "@livepeer/react";
 import { Paper, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 
-import { IsNotMp4 } from "@/utils/media";
 import type { Post } from "@/services/upload";
 
 interface IMyProps {
@@ -12,7 +10,7 @@ interface IMyProps {
 
 const PostCard: React.FC<IMyProps> = ({ post }) => {
   return (
-    <Link href={`/post/${post.token_id}`}>
+    <Link href={`/post/${post.tokenId}`}>
       <Paper
         component="div"
         withBorder
@@ -21,40 +19,14 @@ const PostCard: React.FC<IMyProps> = ({ post }) => {
         p="md"
         sx={{ cursor: "pointer" }}
       >
-        {IsNotMp4(post.image) ? (
-          <Image
-            src={post.image}
-            alt={post.name}
-            height={200}
-            width={200}
-            sizes="200px"
-            style={{ objectFit: "cover", borderRadius: "10px" }}
-          />
-        ) : (
-          <div
-            style={{
-              objectFit: "cover",
-              borderRadius: "10px",
-              width: 200,
-            }}
-          >
-            <Player
-              src={post.image}
-              muted={true}
-              autoPlay
-              loop
-              controls={{
-                autohide: 1000,
-                defaultVolume: 0,
-              }}
-              autoUrlUpload={{
-                fallback: true,
-                ipfsGateway: "https://w3s.link",
-              }}
-              aspectRatio="1to1"
-            />
-          </div>
-        )}
+        <Image
+          src={post.image}
+          alt={post.name}
+          height={200}
+          width={200}
+          sizes="200px"
+          style={{ objectFit: "cover", borderRadius: "10px" }}
+        />
         <Text
           align="center"
           mt="sm"

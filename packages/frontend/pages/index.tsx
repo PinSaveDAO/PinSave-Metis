@@ -63,7 +63,7 @@ const Home: NextPage = () => {
         {fetchedPosts &&
           fetchedPosts?.map((post: Post) => {
             return (
-              <Center ref={lastElement} key={post.token_id}>
+              <Center ref={lastElement} key={post.tokenId}>
                 <PostCard post={post} />
               </Center>
             );

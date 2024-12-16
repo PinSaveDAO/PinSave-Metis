@@ -10,13 +10,13 @@ import { usePost } from "@/hooks/api";
 const PostPage = () => {
   const router: NextRouter = useRouter();
   const postId: string = String(router.query.id);
-  const orbisTag: string = `metis: ${postId}`;
+  const tag: string = `metis: ${postId}`;
   const { data: postQueried, isLoading } = usePost(postId);
   return (
     <div>
       <PageSEO
-        title={`Pin Save Post ${orbisTag}`}
-        description={`Pin Save Post ${orbisTag}`}
+        title={`Pin Save Post ${tag}`}
+        description={`Pin Save Post ${tag}`}
       />
       <LoadingOverlay visible={isLoading} />
       {postQueried && (
@@ -38,7 +38,7 @@ const PostPage = () => {
             ]}
           >
             <DisplayMedia post={postQueried} />
-            <MediaDetails post={postQueried} orbisTag={orbisTag} />
+            <MediaDetails post={postQueried} />
           </SimpleGrid>
         </div>
       )}
