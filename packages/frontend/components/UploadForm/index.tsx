@@ -17,10 +17,12 @@ import ReactPlayer from "react-player";
 import { Upload, Replace } from "tabler-icons-react";
 import {
   useAccount,
-  useContractWrite,
-  usePrepareContractWrite,
+  useWriteContract,
   useEnsAddress,
+  createConfig,
+  http,
 } from "wagmi";
+import { mainnet } from "wagmi/chains";
 
 import { UploadData } from "@/services/upload";
 import { getContractInfo } from "@/utils/contracts";
@@ -101,21 +103,23 @@ const UploadForm = () => {
 
   const [provider, setProvider] = useState<"Pinata">("Pinata");
 
-  const { config } = usePrepareContractWrite({
-    address: contractAddress,
-    abi: abi,
-    functionName: "createPost",
-    args: [postReceiver, cid],
-  });
-  const { data, write: writeMintPost } = useContractWrite(config);
+  const { data: hash, writeContract: writeMintPost } = useWriteContract();
+
   const [lastHash, setLastHash] = useState<string>("");
 
   const [ensName, setEnsName] = useState<string>("");
 
+  const config = createConfig({
+    chains: [mainnet],
+    transports: {
+      [mainnet.id]: http(),
+    },
+  });
+
   const { data: receiverAddress } = useEnsAddress({
     name: ensName,
     chainId: 1,
-    cacheTime: 10000,
+    config,
   });
 
   async function saveIPFSPostAndUpload(
@@ -158,8 +162,8 @@ const UploadForm = () => {
       console.log("Updated response:" + cid);
     }
 
-    if (data?.hash && data?.hash !== lastHash && isPostUpdated) {
-      setLastHash(data.hash);
+    if (hash && hash !== lastHash && isPostUpdated) {
+      setLastHash(hash);
       setIsPostUpdated(false);
       setIsPostLoading(false);
     }
@@ -167,12 +171,12 @@ const UploadForm = () => {
     isPostLoading,
     postReceiver,
     receiverAddress,
-    data,
     lastHash,
     cid,
     isPostUpdated,
     senderAddress,
     ensName,
+    hash,
   ]);
 
   return (
@@ -292,7 +296,12 @@ const UploadForm = () => {
                   radius="lg"
                   mt="md"
                   onClick={() => {
-                    writeMintPost?.();
+                    writeMintPost({
+                      address: contractAddress,
+                      abi: abi,
+                      functionName: "createPost",
+                      args: [postReceiver, cid],
+                    });
                   }}
                 >
                   Upload Post

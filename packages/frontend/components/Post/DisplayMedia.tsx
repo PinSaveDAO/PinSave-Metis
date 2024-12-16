@@ -3,8 +3,6 @@ import { Center } from "@mantine/core";
 import Image from "next/image";
 
 import type { IndividualPost } from "@/services/upload";
-import VideoPlayer from "@/components/Post/VideoPlayer";
-import { IsNotMp4 } from "@/utils/media";
 
 interface IMyProps {
   post: IndividualPost;
@@ -44,22 +42,18 @@ const DisplayMedia: React.FC<IMyProps> = ({ post }) => {
 
   return (
     <Center>
-      {IsNotMp4(post?.image) ? (
-        <Image
-          height={height}
-          width={width}
-          src={post.image}
-          alt={post.name}
-          style={{
-            height: "95%",
-            borderRadius: "10px",
-            maxHeight: height,
-            maxWidth: width,
-          }}
-        />
-      ) : (
-        <VideoPlayer {...post} />
-      )}
+      <Image
+        height={height}
+        width={width}
+        src={post.image}
+        alt={post.name}
+        style={{
+          height: "95%",
+          borderRadius: "10px",
+          maxHeight: height,
+          maxWidth: width,
+        }}
+      />
     </Center>
   );
 };

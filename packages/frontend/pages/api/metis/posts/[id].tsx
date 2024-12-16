@@ -29,6 +29,7 @@ export default async function handler(
       ...objectJsonMetadata,
       author: postAuthor,
       owner: owner,
+      tokenId: id,
     });
   } catch (err) {
     res.status(500).send({ error: "failed to fetch data" + err });

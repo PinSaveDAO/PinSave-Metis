@@ -7,19 +7,18 @@ export type PostDataUpload = {
 };
 
 export type PostData = {
-  name: string;
   description: string;
   image: string;
+  name: string;
 };
 
 export type Post = PostData & {
-  token_id: number;
+  tokenId: number;
 };
 
 export type IndividualPost = Post & {
   owner: string;
   author: string;
-  tokenIdBytes: string;
 };
 
 export type UploadingPost = {
