@@ -5,9 +5,9 @@ export const siteMetadata = {
   description:
     "Pin Save is a platform for decentralized content aggregation and image sharing where users have content ownership.",
   ogType: "website",
-  ogImageUrl: "https://evm.pinsave.app/TwitterIconWords.png",
-  siteUrl: "https://evm.pinsave.app",
-  siteRepo: "https://github.com/PinSaveDAO/PinSave-EVM",
+  ogImageUrl: "https://metis.pinsave.app/TwitterIconWords.png",
+  siteUrl: "https://metis.pinsave.app",
+  siteRepo: "https://github.com/PinSaveDAO/PinSave-Metis",
   github: "https://github.com/PinSaveDAO/",
   twitter: "@pinsav3",
   twitterCreator: "@pinsav3",

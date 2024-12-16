@@ -37,7 +37,7 @@ export default async function handler(
       for (let i = lowerLimit; upperLimit >= i; i++) {
         result = await contract.getPostCid(i);
         const item = await fetchDecodedPost(result);
-        items.push({ token_id: i, ...item });
+        items.push({ tokenId: i, ...item });
       }
     } catch {
       res.status(200).json({ items: items, totalSupply: totalSupply });
