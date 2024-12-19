@@ -23,7 +23,7 @@
     "ethers": "^6.8.0",
     "filereader-stream": "^2.0.0",
     "isomorphic-fetch": "^3.0.0",
-    "next": "^15.0.3",
+    "next": "^15.1.2",
     "next-sitemap": "^4.2.3",
     "pinata": "^1.8.1",
     "postcss": "^8.4.22",
