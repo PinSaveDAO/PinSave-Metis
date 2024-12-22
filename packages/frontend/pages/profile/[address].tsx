@@ -24,14 +24,13 @@ function Post() {
   const config = createConfig({
     chains: [mainnet],
     transports: {
-      [mainnet.id]: http(),
+      [mainnet.id]: http(process.env.NEXT_PUBLIC_ALCHEMY),
     },
   });
 
   const { data: ensName } = useEnsName({
     address: userAddress,
     chainId: 1,
-    blockTag: "latest",
     config,
   });
 

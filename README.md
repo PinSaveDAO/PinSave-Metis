@@ -28,11 +28,15 @@ Pin Save is a decentralized image, video sharing and content aggregation platfor
 
 - Decentralized feed of NFTs on Metis chain with decentralized storage on IPFS with Pinata:
 
-![decentralized feed](https://raw.githubusercontent.com/PinSaveDAO/PinSave-EVM/evm/assets/feed.png)
+![decentralized feed](https://raw.githubusercontent.com/PinSaveDAO/PinSave-Metis/blob/main/assets/feed.png)
 
 - Image posting:
 
-![Pin Save Upload](https://bafybeiaj46fxgxax6z3nd45n7p42rh7dbyweyssi3dunr3wfewh7ys2d7y.ipfs.nftstorage.link/)
+![Pin Save Upload](https://raw.githubusercontent.com/PinSaveDAO/PinSave-Metis/blob/main/assets/upload.png)
+
+- Profile Page with ENS:
+
+![Pin Save Upload](https://raw.githubusercontent.com/PinSaveDAO/PinSave-Metis/blob/main/assets/profile.png)
 
 ### Optimism Smart contracts
 
