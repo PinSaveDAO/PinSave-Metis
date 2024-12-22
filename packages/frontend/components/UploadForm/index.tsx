@@ -86,8 +86,11 @@ export const dropzoneChildren = (image: File | undefined) => {
 
 const UploadForm = () => {
   const [hasMounted, setHasMounted] = useState(false);
+  const [fetchedAccount, setFetchedAccount] = useState(false);
   const { address: senderAddress } = useAccount();
+
   const { address: contractAddress, abi } = getContractInfo();
+  const { data: hash, writeContract: writeMintPost } = useWriteContract();
 
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -103,8 +106,6 @@ const UploadForm = () => {
 
   const [provider, setProvider] = useState<"Pinata">("Pinata");
 
-  const { data: hash, writeContract: writeMintPost } = useWriteContract();
-
   const [lastHash, setLastHash] = useState<string>("");
 
   const [ensName, setEnsName] = useState<string>("");
@@ -112,7 +113,7 @@ const UploadForm = () => {
   const config = createConfig({
     chains: [mainnet],
     transports: {
-      [mainnet.id]: http(),
+      [mainnet.id]: http(process.env.NEXT_PUBLIC_ALCHEMY),
     },
   });
 
@@ -148,10 +149,12 @@ const UploadForm = () => {
   }
 
   useEffect(() => {
-    setHasMounted(true);
-    if (!postReceiver) {
+    if (!postReceiver && senderAddress && !fetchedAccount) {
       setPostReceiver(senderAddress);
+      setFetchedAccount(true);
     }
+
+    setHasMounted(true);
 
     if (ensName !== "" && receiverAddress) {
       setPostReceiver(receiverAddress);
