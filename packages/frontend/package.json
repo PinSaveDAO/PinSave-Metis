@@ -25,7 +25,7 @@
     "isomorphic-fetch": "^3.0.0",
     "next": "^15.1.2",
     "next-sitemap": "^4.2.3",
-    "pinata": "^1.8.1",
+    "pinata": "^1.10.1",
     "postcss": "^8.4.22",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

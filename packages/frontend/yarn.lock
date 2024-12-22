@@ -5941,10 +5941,10 @@ pify@^5.0.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-5.0.0.tgz#1f5eca3f5e87ebec28cc6d54a0e4aaf00acc127f"
   integrity sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==
 
-pinata@^1.8.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/pinata/-/pinata-1.9.1.tgz#17b094983199c4ad15df1927c40b3af9e7522e5a"
-  integrity sha512-fyppX6IALThiwyky/chqhB/ANkDKy4gymZtjtFzPv17n62W2Srd5+7LhIGuR+6NQsA2X+Z6uwN/EkXJJeqHTLA==
+pinata@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/pinata/-/pinata-1.10.1.tgz#bcdd6418321875c1106def1312a5737eed8448f0"
+  integrity sha512-/nB9C7zCEnC5YW+deO5FGX5RizSN23JXvbUdDLfzgwtKj4m5JC8ScuLkQ+iirfvpPQGQFQ/X5mR3aC/npTjFDA==
   dependencies:
     is-ipfs "^8.0.4"
     node-fetch "^3.3.1"
