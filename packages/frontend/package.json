@@ -38,7 +38,7 @@
     "wagmi": "^2.14.3"
   },
   "devDependencies": {
-    "@tanstack/eslint-plugin-query": "^5.6.0",
+    "@tanstack/eslint-plugin-query": "^5.62.9",
     "@types/isomorphic-fetch": "^0.0.39",
     "@types/node": "^22.9.1",
     "@types/react": "^18.2.5",
