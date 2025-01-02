@@ -47,6 +47,7 @@ const DisplayMedia: React.FC<IMyProps> = ({ post }) => {
         width={width}
         src={post.image}
         alt={post.name}
+        loading="lazy"
         style={{
           height: "95%",
           borderRadius: "10px",
