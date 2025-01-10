@@ -23,6 +23,7 @@ const nextConfig = {
       },
     ],
     minimumCacheTTL: 31536000,
+    unoptimized: true,
   },
 };
 
