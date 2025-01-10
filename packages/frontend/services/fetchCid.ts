@@ -36,10 +36,17 @@ export async function fetchImagePinata(cidImage: string) {
     pinataGateway: process.env.NEXT_PUBLIC_GATEWAY_URL,
   });
 
-  const url = await pinata.gateways.createSignedURL({
-    cid: cid,
-    expires: 1800,
-  });
+  const url = await pinata.gateways
+    .createSignedURL({
+      cid: cid,
+      expires: 3600,
+    })
+    .optimizeImage({
+      width: 500,
+      height: 500,
+      format: "webp",
+    });
+
   return url;
 }
 

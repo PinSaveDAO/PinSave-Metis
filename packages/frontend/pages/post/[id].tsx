@@ -18,7 +18,7 @@ const PostPage: NextPage<Props> = ({ post }) => {
   const router: NextRouter = useRouter();
   const postId: string = String(post.tokenId);
 
-  const tag: string = `metis: ${postId}`;
+  const tag: string = `Metis: ${postId}`;
 
   return (
     <div>
