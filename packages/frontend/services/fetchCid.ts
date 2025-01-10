@@ -29,7 +29,10 @@ export async function fetchMetadataPinata(cidMetadata: string) {
   return pinataObject.data as ObjectJsonMetadata;
 }
 
-export async function fetchImagePinata(cidImage: string) {
+export async function fetchImagePinata(
+  cidImage: string,
+  imageResolution: number
+) {
   const cid = parseCid(cidImage);
   const pinata = new PinataSDK({
     pinataJwt: process.env.NEXT_PUBLIC_PINATA_JWT,
@@ -42,21 +45,25 @@ export async function fetchImagePinata(cidImage: string) {
       expires: 3600,
     })
     .optimizeImage({
-      width: 500,
-      height: 500,
+      width: imageResolution,
+      height: imageResolution,
       format: "webp",
     });
 
   return url;
 }
 
-export async function fetchDecodedPost(cidMetadata: string) {
+export async function fetchDecodedPost(
+  cidMetadata: string,
+  imageResolution: number
+) {
   try {
     const objectJsonMetadata: ObjectJsonMetadata =
       await fetchMetadataPinata(cidMetadata);
     try {
       const decodedImage: string = await fetchImagePinata(
-        objectJsonMetadata.image
+        objectJsonMetadata.image,
+        imageResolution
       );
       const output = {
         ...objectJsonMetadata,

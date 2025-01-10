@@ -96,7 +96,7 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
     const totalSupply: number = Number(await contract.totalSupply());
 
     const result = await contract.getPostCid(tokenId);
-    const item = await fetchDecodedPost(result);
+    const item = await fetchDecodedPost(result, 500);
     const owner: string = await contract.getPostOwner(tokenId);
     const postAuthor: string = await contract.getPostAuthor(tokenId);
     const post: Post = {

@@ -63,7 +63,7 @@ export const getStaticProps = async () => {
 
   for (let i = 1; i <= totalSupply; i++) {
     const result = await contract.getPostCid(i);
-    const post = await fetchDecodedPost(result);
+    const post = await fetchDecodedPost(result, 150);
     posts.push({ image: post.image, name: post.name, tokenId: i });
   }
   return {
