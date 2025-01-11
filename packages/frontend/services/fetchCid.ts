@@ -42,7 +42,7 @@ export async function fetchImagePinata(
   const url = await pinata.gateways
     .createSignedURL({
       cid: cid,
-      expires: 3600,
+      expires: 864000,
     })
     .optimizeImage({
       width: imageResolution,
