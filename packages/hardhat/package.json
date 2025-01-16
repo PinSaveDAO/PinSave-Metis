@@ -8,7 +8,7 @@
     "@openzeppelin/contracts": "^5.1.0",
     "@synthetixio/synpress": "^4.0.3",
     "chai": "^4.3.7",
-    "chalk": "^5.2.0",
+    "chalk": "^5.4.1",
     "dotenv": "^16.4.7",
     "hardhat": "2.22.17",
     "hardhat-deploy": "^0.14.0",
