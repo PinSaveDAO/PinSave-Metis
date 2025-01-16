@@ -35,7 +35,7 @@
     "sharp": "^0.33.0",
     "tabler-icons-react": "^1.56.0",
     "viem": "^2.22.8",
-    "wagmi": "^2.14.3"
+    "wagmi": "^2.14.8"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.62.16",
