@@ -10,7 +10,7 @@
     "chai": "^4.3.7",
     "chalk": "^5.4.1",
     "dotenv": "^16.4.7",
-    "hardhat": "2.22.17",
+    "hardhat": "2.22.18",
     "hardhat-deploy": "^0.14.0",
     "hardhat-gas-reporter": "^2.2.2",
     "nft.storage": "^7.0.0",
