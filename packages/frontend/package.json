@@ -40,7 +40,7 @@
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.62.16",
     "@types/isomorphic-fetch": "^0.0.39",
-    "@types/node": "^22.9.1",
+    "@types/node": "^22.10.9",
     "@types/react": "^18.2.5",
     "eslint": "^9.15.0",
     "eslint-config-next": "^15.1.2",
