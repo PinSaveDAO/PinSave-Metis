@@ -26,7 +26,7 @@ const Home: NextPage<Props> = ({ posts, hasNextPage, page }) => {
       <PageSEO />
 
       <Title order={1} className="fade-in-text">
-        PinSave Home Page
+        PinSave Page {page}
       </Title>
 
       <Box
@@ -51,11 +51,24 @@ const Home: NextPage<Props> = ({ posts, hasNextPage, page }) => {
       <div>
         {hasNextPage ? (
           <Center mt={20}>
+            <Button mr={10}>
+              <Link href={page === 1 ? "/" : `/page/${page - 1}`}>
+                Previous Page
+              </Link>
+            </Button>
             <Button>
               <Link href={`/page/${page + 1}`}>Next Page</Link>
             </Button>
           </Center>
-        ) : null}
+        ) : (
+          <Center mt={20}>
+            <Button>
+              <Link href={page === 1 ? "/" : `/page/${page - 1}`}>
+                Previous Page
+              </Link>
+            </Button>
+          </Center>
+        )}
       </div>
     </div>
   );
