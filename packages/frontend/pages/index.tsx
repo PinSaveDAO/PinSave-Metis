@@ -45,9 +45,9 @@ const Home: NextPage<Props> = ({ posts }) => {
         })}
       </Box>
       <Center mt={20}>
-        <Button>
-          <Link href={"/page/1"}>Next Page</Link>
-        </Button>
+        <Link href={"/page/1"}>
+          <Button>Next Page</Button>
+        </Link>
       </Center>
     </div>
   );

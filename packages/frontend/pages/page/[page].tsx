@@ -51,22 +51,18 @@ const Home: NextPage<Props> = ({ posts, hasNextPage, page }) => {
       <div>
         {hasNextPage ? (
           <Center mt={20}>
-            <Button mr={10}>
-              <Link href={page === 1 ? "/" : `/page/${page - 1}`}>
-                Previous Page
-              </Link>
-            </Button>
-            <Button>
-              <Link href={`/page/${page + 1}`}>Next Page</Link>
-            </Button>
+            <Link href={page === 1 ? "/" : `/page/${page - 1}`}>
+              <Button mr={10}>Previous Page</Button>
+            </Link>
+            <Link href={`/page/${page + 1}`}>
+              <Button>Next Page</Button>
+            </Link>
           </Center>
         ) : (
           <Center mt={20}>
-            <Button>
-              <Link href={page === 1 ? "/" : `/page/${page - 1}`}>
-                Previous Page
-              </Link>
-            </Button>
+            <Link href={page === 1 ? "/" : `/page/${page - 1}`}>
+              <Button>Previous Page</Button>
+            </Link>
           </Center>
         )}
       </div>
