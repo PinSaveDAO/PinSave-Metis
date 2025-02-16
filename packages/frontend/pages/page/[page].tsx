@@ -95,13 +95,13 @@ export const getStaticPaths = (async () => {
 export const getStaticProps = async (context: { params: { page: string } }) => {
   const page: number = Number(context.params.page);
 
-  await new Promise((resolve) => setTimeout(resolve, 1000 * page));
+  await new Promise((resolve) => setTimeout(resolve, 100 * page));
 
   const { address, abi } = getContractInfo();
 
   let providerString;
   if (page % 2 === 0) {
-    providerString = "https://metis-mainnet.public.blastapi.io";
+    providerString = process.env.NEXT_PUBLIC_ALCHEMY_METIS_FIRST;
   } else {
     providerString = process.env.NEXT_PUBLIC_ALCHEMY_METIS_SECOND;
   }

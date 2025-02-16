@@ -73,7 +73,7 @@ const PostPage: NextPage<Props> = () => {
       });
     }
     fetchData();
-  }, []);
+  }, [postId]);
 
   return (
     <div>
