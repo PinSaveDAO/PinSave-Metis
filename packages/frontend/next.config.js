@@ -18,8 +18,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "ipfs.io",
-        pathname: "/ipfs/**",
+        hostname: "**.mypinata.cloud/**",
       },
     ],
     minimumCacheTTL: 31536000,

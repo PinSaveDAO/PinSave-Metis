@@ -109,7 +109,7 @@ const UploadForm = () => {
   const config = createConfig({
     chains: [mainnet],
     transports: {
-      [mainnet.id]: http(process.env.NEXT_PUBLIC_ALCHEMY),
+      [mainnet.id]: http(process.env.NEXT_PUBLIC_ALCHEMY_MAINNET),
     },
   });
 

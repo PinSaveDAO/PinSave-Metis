@@ -94,10 +94,19 @@ export const getStaticPaths = (async () => {
 
 export const getStaticProps = async (context: { params: { page: string } }) => {
   const page: number = Number(context.params.page);
+
+  await new Promise((resolve) => setTimeout(resolve, 1000 * page));
+
   const { address, abi } = getContractInfo();
-  const provider = new JsonRpcProvider(
-    "https://metis-mainnet.public.blastapi.io"
-  );
+
+  let providerString;
+  if (page % 2 === 0) {
+    providerString = "https://metis-mainnet.public.blastapi.io";
+  } else {
+    providerString = process.env.NEXT_PUBLIC_ALCHEMY_METIS_SECOND;
+  }
+  const provider = new JsonRpcProvider(providerString);
+
   const contract: Contract = new Contract(address, abi, provider);
 
   const totalSupply: number = Number(await contract.totalSupply());
@@ -115,8 +124,9 @@ export const getStaticProps = async (context: { params: { page: string } }) => {
   }
 
   for (let i = indexStart; i <= indexEnd; i++) {
-    const result = await contract.getPostCid(i);
+    const result: string = await contract.getPostCid(i);
     const post = await fetchDecodedPost(result, 150);
+    await new Promise((resolve) => setTimeout(resolve, 100));
     posts.push({ image: post.image, name: post.name, tokenId: i });
   }
   return {

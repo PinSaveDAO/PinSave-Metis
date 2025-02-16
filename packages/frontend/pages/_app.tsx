@@ -11,6 +11,7 @@ import { useMemo } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { Chain, metis } from "wagmi/chains";
+// import { PinataProvider } from "context";
 
 import LayoutApp from "@/components/Layout";
 
@@ -26,7 +27,7 @@ export interface MyWalletOptions {
 }
 
 const config = getDefaultConfig({
-  appName: "Pin Save",
+  appName: "PinSave",
   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_ID,
   chains: [metis],
   ssr: true,
@@ -56,9 +57,11 @@ function MyApp({ Component, pageProps }: NextAppProps) {
         <WagmiProvider config={config}>
           <NotificationsProvider>
             <RainbowKitProvider>
+              {/* <PinataProvider> */}
               <LayoutApp>
                 <Component {...pageProps} />
               </LayoutApp>
+              {/* </PinataProvider> */}
             </RainbowKitProvider>
           </NotificationsProvider>
         </WagmiProvider>

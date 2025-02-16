@@ -1,4 +1,4 @@
-import type { GetStaticPaths, NextPage } from "next";
+import type { NextPage } from "next";
 import { Contract, JsonRpcProvider } from "ethers";
 import { ActionIcon, SimpleGrid } from "@mantine/core";
 import { NextRouter, useRouter } from "next/router";
@@ -9,10 +9,21 @@ import DisplayMedia from "@/components/Post/DisplayMedia";
 import { PageSEO } from "@/components/SEO";
 import { fetchDecodedPost } from "@/services/fetchCid";
 import { getContractInfo } from "@/utils/contracts";
+//import { usePinatasContext } from "@/context/index";
+import { useEffect, useState } from "react";
 
 interface Props {
   post: Post;
 }
+
+type FullPost = {
+  image: string;
+  name: string;
+  description: string;
+  tokenId: number;
+  owner: string;
+  author: string;
+};
 
 const PostPage: NextPage<Props> = ({ post }) => {
   const router: NextRouter = useRouter();
@@ -20,13 +31,31 @@ const PostPage: NextPage<Props> = ({ post }) => {
 
   const tag: string = `Metis: ${postId}`;
 
+  const [postFull, setPost] = useState<FullPost>();
+
+  useEffect(() => {
+    async function fetchData() {
+      const item = await fetchDecodedPost(post.cid, 500);
+      console.log(item);
+      setPost({
+        image: item.image,
+        name: item.name,
+        description: item.description,
+        owner: post.owner,
+        author: post.author,
+        tokenId: post.tokenId,
+      });
+    }
+    fetchData();
+  }, [post]);
+
   return (
     <div>
       <PageSEO
-        title={`Pin Save Post ${tag}`}
-        description={`Pin Save Post ${tag}`}
+        title={`PinSave Post ${tag}`}
+        description={`PinSave Post ${tag}`}
       />
-      {post && (
+      {postFull && (
         <div>
           <ActionIcon
             onClick={() => router.back()}
@@ -44,8 +73,8 @@ const PostPage: NextPage<Props> = ({ post }) => {
               { maxWidth: "md", cols: 1, spacing: "md" },
             ]}
           >
-            <DisplayMedia post={post} />
-            <MediaDetails post={post} />
+            <DisplayMedia post={postFull} />
+            <MediaDetails post={postFull} />
           </SimpleGrid>
         </div>
       )}
@@ -55,8 +84,9 @@ const PostPage: NextPage<Props> = ({ post }) => {
 
 export default PostPage;
 
-export const getStaticPaths = (async () => {
+export const getStaticPaths = async () => {
   const { address, abi } = getContractInfo();
+
   const provider = new JsonRpcProvider(
     "https://andromeda.metis.io/?owner=1088"
   );
@@ -71,16 +101,16 @@ export const getStaticPaths = (async () => {
     paths: paths,
     fallback: "blocking",
   };
-}) satisfies GetStaticPaths;
+};
 
 type Post = {
-  image: string;
-  name: string;
-  description: string;
   tokenId: number;
   owner: string;
   author: string;
-  totalSupply: number;
+  cid: string;
+  /*   name: string;
+  description: string;
+  image: string; */
 };
 
 export const getStaticProps = async (context: { params: { id: string } }) => {
@@ -88,23 +118,27 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
     const tokenId: number = Number(context.params.id);
 
     const { address, abi } = getContractInfo();
-    const provider = new JsonRpcProvider(
-      "https://metis-mainnet.public.blastapi.io"
-    );
+
+    let providerString;
+
+    if (tokenId % 2 === 0) {
+      providerString = process.env.NEXT_PUBLIC_ALCHEMY_METIS_FIRST;
+    } else {
+      providerString = process.env.NEXT_PUBLIC_ALCHEMY_METIS_SECOND;
+    }
+
+    const provider: JsonRpcProvider = new JsonRpcProvider(providerString);
     const contract: Contract = new Contract(address, abi, provider);
 
-    const totalSupply: number = Number(await contract.totalSupply());
-
-    const result = await contract.getPostCid(tokenId);
-    const item = await fetchDecodedPost(result, 500);
+    const cid: string = await contract.getPostCid(tokenId);
+    //const item = await fetchDecodedPost(cid, 500);
     const owner: string = await contract.getPostOwner(tokenId);
     const postAuthor: string = await contract.getPostAuthor(tokenId);
     const post: Post = {
-      totalSupply: totalSupply,
       tokenId: tokenId,
       owner: owner,
       author: postAuthor,
-      ...item,
+      cid: cid,
     };
 
     return {

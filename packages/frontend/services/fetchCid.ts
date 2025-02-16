@@ -1,6 +1,6 @@
-import { parseCid } from "@/services/parseCid";
-
 import { PinataSDK } from "pinata";
+
+import { parseCid } from "@/services/parseCid";
 
 export type ObjectJsonMetadata = {
   name: string;
@@ -31,12 +31,15 @@ export async function fetchMetadataPinata(cidMetadata: string) {
 
 export async function fetchImagePinata(
   cidImage: string,
-  imageResolution: number
+  imageResolution: number,
+  gateway?: string,
+  gatewayKey?: string
 ) {
   const cid = parseCid(cidImage);
   const pinata = new PinataSDK({
     pinataJwt: process.env.NEXT_PUBLIC_PINATA_JWT,
-    pinataGateway: process.env.NEXT_PUBLIC_GATEWAY_URL,
+    pinataGateway: gateway ?? process.env.NEXT_PUBLIC_GATEWAY_URL,
+    pinataGatewayKey: gatewayKey ?? "",
   });
 
   const url = await pinata.gateways
@@ -55,7 +58,9 @@ export async function fetchImagePinata(
 
 export async function fetchDecodedPost(
   cidMetadata: string,
-  imageResolution: number
+  imageResolution: number,
+  gateway?: string,
+  gatewayKey?: string
 ) {
   try {
     const objectJsonMetadata: ObjectJsonMetadata =
@@ -63,7 +68,9 @@ export async function fetchDecodedPost(
     try {
       const decodedImage: string = await fetchImagePinata(
         objectJsonMetadata.image,
-        imageResolution
+        imageResolution,
+        gateway,
+        gatewayKey
       );
       const output = {
         ...objectJsonMetadata,
