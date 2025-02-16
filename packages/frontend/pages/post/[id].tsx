@@ -12,6 +12,13 @@ import { getContractInfo } from "@/utils/contracts";
 //import { usePinatasContext } from "@/context/index";
 import { useEffect, useState } from "react";
 
+type Post = {
+  tokenId: number;
+  owner: string;
+  author: string;
+  cid: string;
+};
+
 interface Props {
   post: Post;
 }
@@ -25,9 +32,9 @@ type FullPost = {
   author: string;
 };
 
-const PostPage: NextPage<Props> = ({ post }) => {
+const PostPage: NextPage<Props> = () => {
   const router: NextRouter = useRouter();
-  const postId: string = String(post.tokenId);
+  const postId: string = String(router.query.id);
 
   const tag: string = `Metis: ${postId}`;
 
@@ -35,6 +42,25 @@ const PostPage: NextPage<Props> = ({ post }) => {
 
   useEffect(() => {
     async function fetchData() {
+      const { address, abi } = getContractInfo();
+
+      let providerString;
+
+      providerString = process.env.NEXT_PUBLIC_ALCHEMY_METIS_FIRST;
+
+      const provider: JsonRpcProvider = new JsonRpcProvider(providerString);
+      const contract: Contract = new Contract(address, abi, provider);
+
+      const cid: string = await contract.getPostCid(postId);
+      const owner: string = await contract.getPostOwner(postId);
+      const postAuthor: string = await contract.getPostAuthor(postId);
+      const post: Post = {
+        tokenId: Number(postId),
+        owner: owner,
+        author: postAuthor,
+        cid: cid,
+      };
+
       const item = await fetchDecodedPost(post.cid, 500);
       console.log(item);
       setPost({
@@ -47,7 +73,7 @@ const PostPage: NextPage<Props> = ({ post }) => {
       });
     }
     fetchData();
-  }, [post]);
+  }, []);
 
   return (
     <div>
@@ -83,69 +109,3 @@ const PostPage: NextPage<Props> = ({ post }) => {
 };
 
 export default PostPage;
-
-export const getStaticPaths = async () => {
-  const { address, abi } = getContractInfo();
-
-  const provider = new JsonRpcProvider(
-    "https://andromeda.metis.io/?owner=1088"
-  );
-  const contract: Contract = new Contract(address, abi, provider);
-  const totalSupply: number = Number(await contract.totalSupply());
-
-  const paths = Array.from({ length: totalSupply }, (_, i) => ({
-    params: { id: String(totalSupply - i) },
-  }));
-
-  return {
-    paths: paths,
-    fallback: "blocking",
-  };
-};
-
-type Post = {
-  tokenId: number;
-  owner: string;
-  author: string;
-  cid: string;
-  /*   name: string;
-  description: string;
-  image: string; */
-};
-
-export const getStaticProps = async (context: { params: { id: string } }) => {
-  if (context) {
-    const tokenId: number = Number(context.params.id);
-
-    const { address, abi } = getContractInfo();
-
-    let providerString;
-
-    if (tokenId % 2 === 0) {
-      providerString = process.env.NEXT_PUBLIC_ALCHEMY_METIS_FIRST;
-    } else {
-      providerString = process.env.NEXT_PUBLIC_ALCHEMY_METIS_SECOND;
-    }
-
-    const provider: JsonRpcProvider = new JsonRpcProvider(providerString);
-    const contract: Contract = new Contract(address, abi, provider);
-
-    const cid: string = await contract.getPostCid(tokenId);
-    //const item = await fetchDecodedPost(cid, 500);
-    const owner: string = await contract.getPostOwner(tokenId);
-    const postAuthor: string = await contract.getPostAuthor(tokenId);
-    const post: Post = {
-      tokenId: tokenId,
-      owner: owner,
-      author: postAuthor,
-      cid: cid,
-    };
-
-    return {
-      props: {
-        post,
-      },
-      revalidate: 20,
-    };
-  }
-};
