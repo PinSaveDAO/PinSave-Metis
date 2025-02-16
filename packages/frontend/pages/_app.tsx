@@ -3,7 +3,6 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 import type { NextComponentType } from "next";
 import type AppProps from "next/app";
-
 import { MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -11,7 +10,6 @@ import { useMemo } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { Chain, metis } from "wagmi/chains";
-// import { PinataProvider } from "context";
 
 import LayoutApp from "@/components/Layout";
 
@@ -57,11 +55,9 @@ function MyApp({ Component, pageProps }: NextAppProps) {
         <WagmiProvider config={config}>
           <NotificationsProvider>
             <RainbowKitProvider>
-              {/* <PinataProvider> */}
               <LayoutApp>
                 <Component {...pageProps} />
               </LayoutApp>
-              {/* </PinataProvider> */}
             </RainbowKitProvider>
           </NotificationsProvider>
         </WagmiProvider>

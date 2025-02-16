@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Contract, JsonRpcProvider } from "ethers";
 
 import { ObjectJsonMetadata, fetchDecodedPost } from "@/services/fetchCid";
+
 import { getContractInfo } from "@/utils/contracts";
 
 export default async function handler(

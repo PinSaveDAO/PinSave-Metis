@@ -31,15 +31,12 @@ export async function fetchMetadataPinata(cidMetadata: string) {
 
 export async function fetchImagePinata(
   cidImage: string,
-  imageResolution: number,
-  gateway?: string,
-  gatewayKey?: string
+  imageResolution: number
 ) {
   const cid = parseCid(cidImage);
   const pinata = new PinataSDK({
     pinataJwt: process.env.NEXT_PUBLIC_PINATA_JWT,
-    pinataGateway: gateway ?? process.env.NEXT_PUBLIC_GATEWAY_URL,
-    pinataGatewayKey: gatewayKey ?? "",
+    pinataGateway: process.env.NEXT_PUBLIC_GATEWAY_URL,
   });
 
   const url = await pinata.gateways
@@ -58,9 +55,7 @@ export async function fetchImagePinata(
 
 export async function fetchDecodedPost(
   cidMetadata: string,
-  imageResolution: number,
-  gateway?: string,
-  gatewayKey?: string
+  imageResolution: number
 ) {
   try {
     const objectJsonMetadata: ObjectJsonMetadata =
@@ -68,9 +63,7 @@ export async function fetchDecodedPost(
     try {
       const decodedImage: string = await fetchImagePinata(
         objectJsonMetadata.image,
-        imageResolution,
-        gateway,
-        gatewayKey
+        imageResolution
       );
       const output = {
         ...objectJsonMetadata,

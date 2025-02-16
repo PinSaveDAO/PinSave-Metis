@@ -18,7 +18,7 @@ export const usePosts = () => {
   });
 };
 
-export const usePost = (id: string, enabled: boolean) => {
+export const usePost = (id: number, enabled: boolean) => {
   return useQuery({
     queryKey: [id],
     queryFn: () => fetchPost(id),
