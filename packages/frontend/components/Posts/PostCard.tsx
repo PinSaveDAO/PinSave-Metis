@@ -4,8 +4,14 @@ import Link from "next/link";
 
 import type { Post } from "@/services/upload";
 
+type PostReduced = {
+  image: string;
+  name: string;
+  tokenId: number;
+};
+
 interface IMyProps {
-  post: Post;
+  post: PostReduced;
 }
 
 const PostCard: React.FC<IMyProps> = ({ post }) => {

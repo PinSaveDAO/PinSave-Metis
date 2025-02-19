@@ -1,4 +1,5 @@
-import { ActionIcon, SimpleGrid, LoadingOverlay } from "@mantine/core";
+import type { NextPage } from "next";
+import { ActionIcon, SimpleGrid } from "@mantine/core";
 import { NextRouter, useRouter } from "next/router";
 import { ArrowLeft } from "tabler-icons-react";
 
@@ -7,19 +8,32 @@ import DisplayMedia from "@/components/Post/DisplayMedia";
 import { PageSEO } from "@/components/SEO";
 import { usePost } from "@/hooks/api";
 
-const PostPage = () => {
+type Post = {
+  tokenId: number;
+  owner: string;
+  author: string;
+  cid: string;
+};
+
+interface Props {
+  post: Post;
+}
+
+const PostPage: NextPage<Props> = () => {
   const router: NextRouter = useRouter();
-  const postId: string = String(router.query.id);
-  const tag: string = `metis: ${postId}`;
-  const { data: postQueried, isLoading } = usePost(postId);
+  const postId: number = Number(router.query.id);
+
+  const tag: string = `Metis: ${postId}`;
+
+  const { data, isFetched } = usePost(postId, !!postId);
+
   return (
     <div>
       <PageSEO
-        title={`Pin Save Post ${tag}`}
-        description={`Pin Save Post ${tag}`}
+        title={`PinSave Post ${tag}`}
+        description={`PinSave Post ${tag}`}
       />
-      <LoadingOverlay visible={isLoading} />
-      {postQueried && (
+      {isFetched && (
         <div>
           <ActionIcon
             onClick={() => router.back()}
@@ -37,8 +51,8 @@ const PostPage = () => {
               { maxWidth: "md", cols: 1, spacing: "md" },
             ]}
           >
-            <DisplayMedia post={postQueried} />
-            <MediaDetails post={postQueried} />
+            <DisplayMedia post={data} />
+            <MediaDetails post={data} />
           </SimpleGrid>
         </div>
       )}

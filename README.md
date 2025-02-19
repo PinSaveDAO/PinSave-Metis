@@ -1,4 +1,4 @@
-# Pin Save - decentralized Pinterest
+# PinSave - decentralized decentalized image sharing platform
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Pfed-prog/Dspyt-NFTs-EVM/master/packages/frontend/public/PinSaveL.png" alt="Size Limit CLI" width="738" >
@@ -18,7 +18,7 @@
 
 </div>
 
-Pin Save is a decentralized image, video sharing and content aggregation platform where community controls the platform.
+PinSave is a decentralized image and content aggregation platform where community controls the platform.
 
 1. The decentralized feed reinforces the discovery of content and feedback.
 2. Upgradeable, resilient decentralized storage.
@@ -32,15 +32,15 @@ Pin Save is a decentralized image, video sharing and content aggregation platfor
 
 - Image posting:
 
-![Pin Save Upload](https://raw.githubusercontent.com/PinSaveDAO/PinSave-Metis/refs/heads/main/assets/upload.png)
+![PinSave Upload](https://raw.githubusercontent.com/PinSaveDAO/PinSave-Metis/refs/heads/main/assets/upload.png)
 
 - Profile Page with ENS:
 
-![Pin Save Upload](https://raw.githubusercontent.com/PinSaveDAO/PinSave-Metis/refs/heads/main/assets/profile.png)
+![PinSave Upload](https://raw.githubusercontent.com/PinSaveDAO/PinSave-Metis/refs/heads/main/assets/profile.png)
 
-### Optimism Smart contracts
+### Metis PinSave Smart contracts
 
-[Metis Smart contract Etherscan](https://explorer.metis.io/token/0x6F67850013b5775E36E35071a5CdD16ea43e1061)
+[Metis PinSave Smart contract Etherscan](https://explorer.metis.io/token/0x6F67850013b5775E36E35071a5CdD16ea43e1061)
 
 ## Setup
 
@@ -54,9 +54,8 @@ yarn dev
 ## Further Resources
 
 - [PinSave Figma Resources](https://www.figma.com/community/file/1102944149244783025)
-- [Zk Ok Pin Save](https://zkok.io/mina/pin-save/)
-- [EthBucharest 2024: Zero Knowledge proofs on Mina, zkPassport and SoulBound NFTs](https://docs.google.com/presentation/d/1OmJJgzk4iFbKexqBw87oU7oh4H9lXlFFh3eas0EF9y8/edit?usp=sharing)
+- [EthBucharest 2024 PinSave: Zero Knowledge proofs on Mina, zkPassport and SoulBound NFTs](https://docs.google.com/presentation/d/1OmJJgzk4iFbKexqBw87oU7oh4H9lXlFFh3eas0EF9y8/edit?usp=sharing)
 - [PinSave.app DR](https://ahrefs.com/website-authority-checker/?input=pinsave.app)
-- [Npm Pin Save mina package](https://www.npmjs.com/package/pin-mina)
-- [Pin Save on Dspyt](https://dspyt.com/PinSave)
-- [Pin Save retroPGF3](https://round3.optimism.io/projects/0xc613e2a991ce0dbcf8fae1d6128e67543da9710e14831112fba654cc8fe8c389)
+- [Npm PinSave mina package](https://www.npmjs.com/package/pin-mina)
+- [PinSave on Dspyt](https://dspyt.com/PinSave)
+- [PinSave retroPGF3](https://round3.optimism.io/projects/0xc613e2a991ce0dbcf8fae1d6128e67543da9710e14831112fba654cc8fe8c389)

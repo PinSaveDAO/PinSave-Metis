@@ -11,16 +11,17 @@ export const usePosts = () => {
     },
     initialPageParam: undefined,
     getNextPageParam: (lastPage: any, pages: any) => {
-      if (lastPage.items[5]?.token_id < lastPage.totalSupply) {
+      if (lastPage.items[5]?.tokenId < lastPage.totalSupply) {
         return pages.length + 1;
       }
     },
   });
 };
 
-export const usePost = (id: string) => {
+export const usePost = (id: number, enabled: boolean) => {
   return useQuery({
     queryKey: [id],
     queryFn: () => fetchPost(id),
+    enabled: enabled,
   });
 };

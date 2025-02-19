@@ -1,8 +1,8 @@
-import { fetchDecodedPost } from "@/services/fetchCid";
-import { getContractInfo } from "@/utils/contracts";
-
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Contract, JsonRpcProvider } from "ethers";
+
+import { fetchDecodedPost } from "@/services/fetchCid";
+import { getContractInfo } from "@/utils/contracts";
 
 export default async function handler(
   req: NextApiRequest,
@@ -36,7 +36,7 @@ export default async function handler(
     try {
       for (let i = lowerLimit; upperLimit >= i; i++) {
         result = await contract.getPostCid(i);
-        const item = await fetchDecodedPost(result);
+        const item = await fetchDecodedPost(result, 150);
         items.push({ tokenId: i, ...item });
       }
     } catch {

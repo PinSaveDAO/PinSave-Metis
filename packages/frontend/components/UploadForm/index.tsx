@@ -3,7 +3,6 @@ import {
   Paper,
   Title,
   TextInput,
-  Textarea,
   Group,
   Button,
   Image,
@@ -13,7 +12,6 @@ import {
 } from "@mantine/core";
 import { Dropzone, MIME_TYPES } from "@mantine/dropzone";
 import { useState, useEffect } from "react";
-import ReactPlayer from "react-player";
 import { Upload, Replace } from "tabler-icons-react";
 import {
   useAccount,
@@ -29,24 +27,21 @@ import { getContractInfo } from "@/utils/contracts";
 
 export const dropzoneChildren = (image: File | undefined) => {
   if (image) {
-    let link = URL.createObjectURL(image);
+    let link: string = URL.createObjectURL(image);
     return (
       <Group
         position="center"
         spacing="xl"
         style={{ minHeight: 220, pointerEvents: "none" }}
       >
-        {image.type[0] === "i" ? (
-          <Image
-            src={link}
-            alt="uploaded image"
-            my="md"
-            radius="lg"
-            sx={{ maxWidth: "240px" }}
-          />
-        ) : (
-          <ReactPlayer url={link} />
-        )}
+        <Image
+          src={link}
+          alt="uploaded image"
+          my="md"
+          radius="lg"
+          sx={{ maxWidth: "240px" }}
+        />
+
         <Group sx={{ color: "#3a3a3a79" }}>
           <MediaQuery
             query="(max-width:500px)"
@@ -90,7 +85,11 @@ const UploadForm = () => {
   const { address: senderAddress } = useAccount();
 
   const { address: contractAddress, abi } = getContractInfo();
-  const { data: hash, writeContract: writeMintPost } = useWriteContract();
+  const {
+    data: hash,
+    writeContract: writeMintPost,
+    status,
+  } = useWriteContract();
 
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -98,22 +97,19 @@ const UploadForm = () => {
   const [postReceiver, setPostReceiver] = useState<`0x${string}` | undefined>(
     senderAddress
   );
-
-  const [isPostUpdated, setIsPostUpdated] = useState<boolean>(false);
-  const [isPostLoading, setIsPostLoading] = useState<boolean>(false);
-
-  const [cid, setCid] = useState<string>("");
-
+  const [ensName, setEnsName] = useState<string>("");
   const [provider, setProvider] = useState<"Pinata">("Pinata");
 
-  const [lastHash, setLastHash] = useState<string>("");
+  const [isPostReady, setIsPostReady] = useState<boolean>(false);
+  const [isPostLoading, setIsPostLoading] = useState<boolean>(false);
 
-  const [ensName, setEnsName] = useState<string>("");
+  const [cid, setCID] = useState<string>("");
+  const [lastHash, setLastHash] = useState<string | undefined>();
 
   const config = createConfig({
     chains: [mainnet],
     transports: {
-      [mainnet.id]: http(process.env.NEXT_PUBLIC_ALCHEMY),
+      [mainnet.id]: http(process.env.NEXT_PUBLIC_ALCHEMY_MAINNET),
     },
   });
 
@@ -129,6 +125,7 @@ const UploadForm = () => {
     image?: File
   ) {
     if (description !== "" && name !== "" && image && postReceiver) {
+      setIsPostLoading(true);
       const cid: string | undefined = await UploadData({
         data: { name: name, description: description, image: image },
         provider: provider,
@@ -138,13 +135,12 @@ const UploadForm = () => {
         throw new Error("no cid");
       }
 
-      setCid(cid);
+      setCID(cid);
+      setIsPostReady(true);
 
       setImage(undefined);
       setName("");
       setDescription("");
-
-      setIsPostLoading(true);
     }
   }
 
@@ -160,14 +156,9 @@ const UploadForm = () => {
       setPostReceiver(receiverAddress);
     }
 
-    if (isPostLoading) {
-      setIsPostUpdated(true);
-      console.log("Updated response:" + cid);
-    }
-
-    if (hash && hash !== lastHash && isPostUpdated) {
+    if (hash && hash !== lastHash && isPostReady) {
       setLastHash(hash);
-      setIsPostUpdated(false);
+      setIsPostReady(false);
       setIsPostLoading(false);
     }
   }, [
@@ -176,10 +167,11 @@ const UploadForm = () => {
     receiverAddress,
     lastHash,
     cid,
-    isPostUpdated,
+    isPostReady,
     senderAddress,
     ensName,
     hash,
+    fetchedAccount,
   ]);
 
   return (
@@ -214,7 +206,7 @@ const UploadForm = () => {
               </Title>
             )}
 
-            {!isPostUpdated ? (
+            {!isPostLoading ? (
               <div>
                 <TextInput
                   required
@@ -223,7 +215,7 @@ const UploadForm = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
-                <Textarea
+                <TextInput
                   my="md"
                   required
                   onChange={(e) => setDescription(e.target.value)}
@@ -261,13 +253,12 @@ const UploadForm = () => {
                     MIME_TYPES.webp,
                     MIME_TYPES.svg,
                     MIME_TYPES.gif,
-                    MIME_TYPES.mp4,
                   ]}
                 >
                   {() => dropzoneChildren(image)}
                 </Dropzone>
                 <Group position="center" sx={{ padding: 10 }}>
-                  {senderAddress && (
+                  {senderAddress && !isPostLoading && (
                     <Button
                       component="a"
                       radius="lg"
@@ -280,6 +271,17 @@ const UploadForm = () => {
                     </Button>
                   )}
                 </Group>
+                {lastHash && (
+                  <>
+                    <Center>
+                      <Text>{status}</Text>
+                    </Center>
+                    <Center>
+                      <Text>{lastHash}</Text>
+                    </Center>
+                  </>
+                )}
+
                 <Center>
                   <NativeSelect
                     placeholder="Pick IPFS Provider"
@@ -293,23 +295,36 @@ const UploadForm = () => {
                 </Center>
               </div>
             ) : (
-              <Center>
-                <Button
-                  component="a"
-                  radius="lg"
-                  mt="md"
-                  onClick={() => {
-                    writeMintPost({
-                      address: contractAddress,
-                      abi: abi,
-                      functionName: "createPost",
-                      args: [postReceiver, cid],
-                    });
-                  }}
-                >
-                  Upload Post
-                </Button>
-              </Center>
+              <>
+                {isPostReady ? (
+                  <>
+                    <Center>
+                      <Button
+                        component="a"
+                        radius="lg"
+                        mt="md"
+                        onClick={() => {
+                          writeMintPost({
+                            address: contractAddress,
+                            abi: abi,
+                            functionName: "createPost",
+                            args: [postReceiver, cid],
+                          });
+                        }}
+                      >
+                        Upload Post
+                      </Button>
+                    </Center>
+                    <Center mt="md">
+                      <Text>CID: {cid}</Text>
+                    </Center>
+                  </>
+                ) : (
+                  <Center>
+                    <Text>Uploading to IPFS</Text>
+                  </Center>
+                )}
+              </>
             )}
           </Paper>
         </div>
