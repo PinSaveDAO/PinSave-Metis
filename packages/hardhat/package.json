@@ -6,7 +6,7 @@
   "dependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "@openzeppelin/contracts": "^5.2.0",
-    "@synthetixio/synpress": "^4.0.3",
+    "@synthetixio/synpress": "^4.0.6",
     "chai": "^4.3.7",
     "chalk": "^5.4.1",
     "dotenv": "^16.4.7",
