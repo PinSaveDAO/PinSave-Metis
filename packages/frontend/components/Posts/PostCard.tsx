@@ -2,8 +2,6 @@ import { Paper, Text } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 
-import type { Post } from "@/services/upload";
-
 type PostReduced = {
   image: string;
   name: string;
