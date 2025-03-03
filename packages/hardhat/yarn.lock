@@ -38,14 +38,14 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@depay/solana-web3.js@^1.25.1":
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/@depay/solana-web3.js/-/solana-web3.js-1.28.0.tgz#22f59fba7c905beef87cf06bef93339792f0d785"
-  integrity sha512-E08PbTLKBUnBb8vUYx4q6Zy5lcQtlIIHxwfD7BamUy97RwpAhwckv0ZLD0XhxcJQBXjLlwHlLph31Qi3pxgszg==
+"@depay/solana-web3.js@^1.26.0":
+  version "1.28.1"
+  resolved "https://registry.yarnpkg.com/@depay/solana-web3.js/-/solana-web3.js-1.28.1.tgz#a27251b69e7cb4853e5a5e6d16480154cde72637"
+  integrity sha512-a1qEHiL5RgUyEKfsCxvtFgiu/i7or/qtrj9cNnKAMIc9nxKdZIBrSXY9XiL5M4FmtNDSTDWu8YSRZ9/0oX1EBQ==
   dependencies:
     bs58 "^5.0.0"
 
-"@depay/web3-blockchains@^9.1.4", "@depay/web3-blockchains@^9.6.1":
+"@depay/web3-blockchains@^9.6.1":
   version "9.7.5"
   resolved "https://registry.yarnpkg.com/@depay/web3-blockchains/-/web3-blockchains-9.7.5.tgz#a99f81dc502a8a397e7b1172364fdef5019ea4f5"
   integrity sha512-Nhte6p1mYolqe58JS3Gt3ebn1/xsMMzytNhHk6BK/rpCeqTwX2WyeaYeTAHXNn0sm99hlZM4Qf2Vo4BeZUKOLw==
@@ -63,13 +63,13 @@
     "@depay/web3-blockchains" "^9.6.1"
     ethers "^5.7.1"
 
-"@depay/web3-mock@14.17.0":
-  version "14.17.0"
-  resolved "https://registry.yarnpkg.com/@depay/web3-mock/-/web3-mock-14.17.0.tgz#cf188a9d810c49f7af4aeb60bc06b5ec61bc75b8"
-  integrity sha512-0WCIpHqGUTPmOb5l3iN+4wCY+P3nHnGWd3uyWB+Wrt5DygS6MWI2b50gwtSCgYUCfgmEv9KlRuCnHDC4TDKCeA==
+"@depay/web3-mock@14.19.1":
+  version "14.19.1"
+  resolved "https://registry.yarnpkg.com/@depay/web3-mock/-/web3-mock-14.19.1.tgz#3666a3fa0f2ae4e65f5cb90d88f59ba213414943"
+  integrity sha512-bBM1J0EWDWXJKVPtzo8YrX7fbGwUATYWN8kaJniQU2z5V+UK3kVhjQi+en0JMF9cCjinkERK7MqoZLaYR+cb+Q==
   dependencies:
-    "@depay/solana-web3.js" "^1.25.1"
-    "@depay/web3-blockchains" "^9.1.4"
+    "@depay/solana-web3.js" "^1.26.0"
+    "@depay/web3-blockchains" "^9.6.1"
     ethers "^5.7.1"
 
 "@esbuild/aix-ppc64@0.19.12":
@@ -1385,21 +1385,21 @@
   resolved "https://registry.yarnpkg.com/@solidity-parser/parser/-/parser-0.19.0.tgz#37a8983b2725af9b14ff8c4a475fa0e98d773c3f"
   integrity sha512-RV16k/qIxW/wWc+mLzV3ARyKUaMUTBy9tOLMzFhtNSKYeTAanQ3a5MudJKf/8arIFnA2L27SNjarQKmFg0w/jA==
 
-"@synthetixio/ethereum-wallet-mock@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@synthetixio/ethereum-wallet-mock/-/ethereum-wallet-mock-0.0.4.tgz#37931765fb087a7f08115a4d9a1c9c705a70dab9"
-  integrity sha512-kiKcQKbMsdEbRCAAi8JM+eg8Ihbnxq8sSx3HWQZcoVOzS9zHxjn9PX6ks33py+K1ec49ecCvNqyBUw7ciqhiOg==
+"@synthetixio/ethereum-wallet-mock@0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@synthetixio/ethereum-wallet-mock/-/ethereum-wallet-mock-0.0.9.tgz#cf4d3d4ee4c090688d8d052e4ce8529fd141e971"
+  integrity sha512-PO6dgPqz1U+eSNrLLkOkQE1y6jx0R54Ggg8ofhTGkIUdmbcV4qAPTXlTAOKxgDjrGwlu//AF8P8+mUyaGTpblg==
   dependencies:
     "@depay/web3-client" "10.18.6"
-    "@depay/web3-mock" "14.17.0"
+    "@depay/web3-mock" "14.19.1"
     "@depay/web3-mock-evm" "^14.17.0"
-    "@synthetixio/synpress-core" "0.0.4"
+    "@synthetixio/synpress-core" "0.0.9"
     viem "2.9.9"
 
-"@synthetixio/synpress-cache@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@synthetixio/synpress-cache/-/synpress-cache-0.0.4.tgz#649e718ad71ac0347bbe6c404740100d1b87ec2b"
-  integrity sha512-G1qF0XgMyRDjQjTYFniuFvPaY6+AuSvcEi2bkdcMmKCD0NK+Zw/PLEk0wRy1r1LN1F4HLdXrjittiKU6mh5PLA==
+"@synthetixio/synpress-cache@0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@synthetixio/synpress-cache/-/synpress-cache-0.0.9.tgz#94fafb149957b70e0ce0345f1b719e9e58d42d71"
+  integrity sha512-BBoXNdrJGYhjsEq12kBGir6P/9BUK1hkTYsq3VfFHm5l7nw59i+R2fzufCgqfMWzmw+L/ipEZqaoWJUYiOhZmg==
   dependencies:
     axios "1.6.7"
     chalk "5.3.0"
@@ -1413,31 +1413,31 @@
     unzipper "0.10.14"
     zod "3.22.4"
 
-"@synthetixio/synpress-core@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@synthetixio/synpress-core/-/synpress-core-0.0.4.tgz#a248541d42e23d7c98a1b4ad62e3d57ec74790a7"
-  integrity sha512-3zO8PGigi9sjdG359pZ0EB3BiBPweZVOyiobCopNDykKI/EoWNYY05bOttOG+/Wg0HynMzGTPTRwpJ0+a+k2Sg==
+"@synthetixio/synpress-core@0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@synthetixio/synpress-core/-/synpress-core-0.0.9.tgz#4bbadfc34c453520b63560d1fe2f56205f3149b3"
+  integrity sha512-pXQw5w/iVtDMfuVMR1OAaczMlWMeVYKn+clQB9+RQCTO6RJjC8sM7JEqJ+2Gwkrvq2LFJ+QkbCtinfPOmg4o6g==
 
-"@synthetixio/synpress-metamask@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@synthetixio/synpress-metamask/-/synpress-metamask-0.0.4.tgz#fce10a3a34af293b8b36f9cbbd1c635ee0fee915"
-  integrity sha512-G2bsSWxn8d2YVfZp2Aqo0Kjg0LF/kYC5qDByLyd70Dl21KIGho4amXcOYqCIOGY1Dz3dMLPkpHzVRlSqIC6PIQ==
+"@synthetixio/synpress-metamask@0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@synthetixio/synpress-metamask/-/synpress-metamask-0.0.9.tgz#ee24e6e155cd9ad0fc2cce113d0751a6bf1c5e75"
+  integrity sha512-wqzgPTutp7xNB1ysgd88BfAy4zB1LAbDFb/y7VTsYDiYVFKYHsm9DkeLV5V3sz5AwY4gaHJS1fHrwib6UzoBfA==
   dependencies:
-    "@synthetixio/synpress-cache" "0.0.4"
-    "@synthetixio/synpress-core" "0.0.4"
+    "@synthetixio/synpress-cache" "0.0.9"
+    "@synthetixio/synpress-core" "0.0.9"
     "@viem/anvil" "0.0.7"
     fs-extra "11.2.0"
     zod "3.22.4"
 
-"@synthetixio/synpress@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@synthetixio/synpress/-/synpress-4.0.3.tgz#0af434a2f65bb812ff6621ec12ea68d19ff9bb5b"
-  integrity sha512-x5ly4GXKkvA77EAoZBW4oktXh8IyO6YMEdulI5WiR6zse3qAOEN0Av4KQY/HYJNPcnb82G53BzeCoVAMpYTavA==
+"@synthetixio/synpress@^4.0.8":
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/@synthetixio/synpress/-/synpress-4.0.8.tgz#7c80b313e4df625fb9a6db1737099f834323a2d2"
+  integrity sha512-aOu2bfi9XXwjWfpdIF7wRmgC+xBFfq78GneHdhAZ8W17erN6pWXlsLtb5rWDhJ2XOkbLNpeaqmEfVFRYQWeRPw==
   dependencies:
-    "@synthetixio/ethereum-wallet-mock" "0.0.4"
-    "@synthetixio/synpress-cache" "0.0.4"
-    "@synthetixio/synpress-core" "0.0.4"
-    "@synthetixio/synpress-metamask" "0.0.4"
+    "@synthetixio/ethereum-wallet-mock" "0.0.9"
+    "@synthetixio/synpress-cache" "0.0.9"
+    "@synthetixio/synpress-core" "0.0.9"
+    "@synthetixio/synpress-metamask" "0.0.9"
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.11"
