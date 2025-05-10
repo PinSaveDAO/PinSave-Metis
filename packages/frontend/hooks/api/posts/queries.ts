@@ -12,7 +12,7 @@ export const fetchPosts = async ({
   }
 };
 
-export const fetchPost = async (id: string) => {
+export const fetchPost = async (id: number) => {
   try {
     return await fetcher(`/api/metis/posts/${id}`);
   } catch (error) {

@@ -7,8 +7,8 @@ const Upload: NextPage = () => {
   return (
     <div>
       <PageSEO
-        title={`Pin Save Upload Post Page`}
-        description={`Pin Save upload your decentralized Post Page`}
+        title={`PinSave Upload Post Page`}
+        description={`PinSave upload your decentralized Post Page`}
       />
       <UploadForm />
     </div>

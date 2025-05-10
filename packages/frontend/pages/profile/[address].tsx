@@ -24,7 +24,7 @@ function Post() {
   const config = createConfig({
     chains: [mainnet],
     transports: {
-      [mainnet.id]: http(process.env.NEXT_PUBLIC_ALCHEMY),
+      [mainnet.id]: http(process.env.NEXT_PUBLIC_ALCHEMY_MAINNET),
     },
   });
 
@@ -43,8 +43,8 @@ function Post() {
   return (
     <div>
       <PageSEO
-        title={`Pin Save Profile Page ${address}`}
-        description={`Pin Save decentralized Profile Page ${address}`}
+        title={`PinSave Profile Page ${address}`}
+        description={`PinSave decentralized Profile Page ${address}`}
       />
 
       <Box sx={{ maxWidth: 1200, textAlign: "center" }} mx="auto">

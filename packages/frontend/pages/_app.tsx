@@ -3,7 +3,6 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 import type { NextComponentType } from "next";
 import type AppProps from "next/app";
-
 import { MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -26,7 +25,7 @@ export interface MyWalletOptions {
 }
 
 const config = getDefaultConfig({
-  appName: "Pin Save",
+  appName: "PinSave",
   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_ID,
   chains: [metis],
   ssr: true,

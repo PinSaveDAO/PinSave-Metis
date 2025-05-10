@@ -1,9 +1,9 @@
 export const siteMetadata = {
-  title: "Pin Save - decentralized Pinterest",
+  title: "PinSave - Decentralized Image Sharing & Content Aggregation Platform",
   author: "Pavel Fedotov",
-  headerTitle: "Pin Save - decentralized Pinterest",
+  headerTitle: "PinSave - Decentralized Image Sharing",
   description:
-    "Pin Save is a platform for decentralized content aggregation and image sharing where users have content ownership.",
+    "PinSave is a platform for decentralized content aggregation and image sharing where users have content ownership.",
   ogType: "website",
   ogImageUrl: "https://metis.pinsave.app/TwitterIconWords.png",
   siteUrl: "https://metis.pinsave.app",

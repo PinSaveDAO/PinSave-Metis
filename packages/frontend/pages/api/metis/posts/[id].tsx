@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Contract, JsonRpcProvider } from "ethers";
 
 import { ObjectJsonMetadata, fetchDecodedPost } from "@/services/fetchCid";
+
 import { getContractInfo } from "@/utils/contracts";
 
 export default async function handler(
@@ -19,8 +20,10 @@ export default async function handler(
     const contract: Contract = new Contract(address, abi, provider);
     const postCid: string = await contract.getPostCid(id);
 
-    const objectJsonMetadata: ObjectJsonMetadata =
-      await fetchDecodedPost(postCid);
+    const objectJsonMetadata: ObjectJsonMetadata = await fetchDecodedPost(
+      postCid,
+      500
+    );
 
     const owner: string = await contract.getPostOwner(id);
     const postAuthor: string = await contract.getPostAuthor(id);
